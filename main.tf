@@ -28,4 +28,7 @@ resource "null_resource" "modify_existing_resource" {
       namespace_name    = "kube-system"
     }
   }
+  triggers = {
+    module.eks = var.triggers_resource
+  }
 }
