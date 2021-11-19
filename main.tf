@@ -19,16 +19,18 @@ resource "helm_release" "aws_vpc_cni" {
   ]
 }
 
+# This is to adopt the resources into a release as guided in helm chart
+# https://github.com/aws/eks-charts/tree/master/stable/aws-vpc-cni#adopting-the-existing-aws-node-resources-in-an-eks-cluster
 resource "null_resource" "modify_existing_resource" {
+  count = var.modify_existing_resource ? 1 : 0
   provisioner "local-exec" {
-
-    command = format("%s/modify-existing-resource.sh", path.module/templates)
+    command = ("/bin/bash ${path.module}/templates/modify-existing-resource.sh")
     environment = {
       helm_release_name = "aws-vpc-cni"
       namespace_name    = "kube-system"
     }
   }
   triggers = {
-    module.eks = var.triggers_resource
+    module_eks = var.eks_cluster_id
   }
 }
