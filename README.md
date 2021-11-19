@@ -6,6 +6,7 @@ Terraform module that deploys cloud-platform aws vpc cni
 ## Usage
 
 # For EKS clusters
+```
 module "aws_vpc_cni" {
   source = "github.com/ministryofjustice/cloud-platform-terraform-vpc-cni=1.0.1"
 
@@ -13,7 +14,7 @@ module "aws_vpc_cni" {
   eks_cluster_id           = module.eks.cluster_id
   modify_existing_resource = true
 }
-
+```
 <!--- BEGIN_TF_DOCS --->
 ## Requirements
 
