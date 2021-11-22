@@ -24,7 +24,10 @@ resource "helm_release" "aws_vpc_cni" {
 resource "null_resource" "modify_existing_resource" {
   count = var.modify_existing_resource ? 1 : 0
   provisioner "local-exec" {
-    command = ("/bin/bash ${path.module}/templates/modify-existing-resource.sh")
+    command = <<-EOT
+      aws eks --region eu-west-2 update-kubeconfig --name ${var.cluster_name}
+      /bin/bash ${path.module}/templates/modify-existing-resource.sh
+    EOT
     environment = {
       helm_release_name = "aws-vpc-cni"
       namespace_name    = "kube-system"

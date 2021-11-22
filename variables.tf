@@ -8,3 +8,7 @@ variable "modify_existing_resource" {
   type        = bool
   default     = false
 }
+
+variable "cluster_name" {
+  description = "Kubernetes cluster name - used to name (id) the auth0 resources"
+}
