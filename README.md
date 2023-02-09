@@ -56,3 +56,41 @@ https://github.com/aws/amazon-vpc-cni-k8s
 https://aws.amazon.com/blogs/containers/amazon-vpc-cni-increases-pods-per-node-limits/
 
 
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
+| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [helm_release.aws_vpc_cni](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [null_resource.modify_existing_resource](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Kubernetes cluster name - used to name (id) the auth0 resources | `any` | n/a | yes |
+| <a name="input_eks_cluster_id"></a> [eks\_cluster\_id](#input\_eks\_cluster\_id) | trigger for null resource using eks\_cluster\_id | `any` | n/a | yes |
+| <a name="input_modify_existing_resource"></a> [modify\_existing\_resource](#input\_modify\_existing\_resource) | Run script to modify\_existing\_resource | `bool` | `false` | no |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
